@@ -3,6 +3,7 @@ import { getUsers } from '../../api/user';
 import { selectUserList, setUsersState, setVal } from '../../store/userSlice';
 import { wrapper } from '../../store';
 import { useSelector, useDispatch } from 'react-redux';
+import { FirstLayout} from '../../layouts/first';
 
 export default function ListUser() {
     const users = useSelector(selectUserList);
@@ -20,14 +21,14 @@ export default function ListUser() {
         dispatch(setUsersState(u))
     }
     return (
-        <>
+        <FirstLayout>
             <h3>List users:</h3>
             <button onClick={getNextUsers}>next</button>
 
             {
                 users.map((e, i) => {
                     return (
-                        <Link key={i} href={{ pathname: '/users/[id]', query: { id: e.id } }} style={{ borderBottom: '1px solid', marginBottom: '5px' }}>
+                        <Link key={i} href={{ pathname: '/users/[id]', query: { id: e.id, iid: 'abc' } }} style={{ borderBottom: '1px solid', marginBottom: '5px' }}>
                             <div>
                                 <span>ID: {e.id}</span>
                                 <span>Name: {e.name}</span>
@@ -38,7 +39,7 @@ export default function ListUser() {
                 })
             }
 
-        </>
+        </FirstLayout>
     )
 }
 

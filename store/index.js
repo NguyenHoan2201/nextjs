@@ -1,24 +1,11 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { usersSlice } from "./userSlice";
-import { createWrapper, HYDRATE } from "next-redux-wrapper";
+import { createWrapper } from "next-redux-wrapper";
 
-const combinedReducer = combineReducers({
-  [usersSlice.name]: usersSlice.reducer
-});
-
-const reducer = (state, action) => {
-  if (action.type === HYDRATE) {
-    const nextState = {
-      ...state,
-      ...action.payload,
-    };
-    return nextState;
-  } else {
-    return combinedReducer(state, action);
-  }
-};
 export const store =  configureStore({
-    reducer,
+    reducer: {
+      [usersSlice.name]: usersSlice.reducer
+    },
     devTools: true,
   });
 const makeStore = () => store;

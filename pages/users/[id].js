@@ -3,6 +3,7 @@ import { useDispatch, useSelector, useStore } from "react-redux";
 import { selectUserList, selectVal } from '../../store/userSlice';
 import { useEffect } from "react";
 import { state } from "../../store";
+import {SecondLayout} from '../../layouts/second';
 
 
 export default function UserDetail({ user }) {
@@ -17,7 +18,7 @@ export default function UserDetail({ user }) {
         )
     }
     return (
-        <>
+        <SecondLayout>
             <h3>user detail:</h3>
             <div>{user.id}, {user.name}</div>
 
@@ -35,7 +36,7 @@ export default function UserDetail({ user }) {
                 })
             }
 
-        </>
+        </SecondLayout>
     )
 }
 
